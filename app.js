@@ -1,8 +1,9 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 import studentRouter from './routes/studentRoutes.js'
 
-
+const app = express();
+app.use(express.json());
 (async () => {
   try {
     await mongoose.connect('mongodb+srv://fullstacker:admin@fullstackcluster-oclyh.gcp.mongodb.net/grades?retryWrites=true&w=majority', {
@@ -17,9 +18,9 @@ import studentRouter from './routes/studentRoutes.js'
   }
 })();
 
-const app = express();
 
-app.use(express.json());
+
+
 app.use(studentRouter);
 
-app.listen(3333, () => console.log('🌟 API Iniciada, porta: 3333'));
+app.listen(3333, () => console.log('🌟 API has started, port: 3333'));

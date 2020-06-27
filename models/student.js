@@ -4,19 +4,24 @@ import mongoose from 'mongoose';
 const studentSchema = mongoose.Schema({
   name: {
     type: String,
-    require: true
+    required: true
   },
   subject: {
     type: String,
-    require: true
+    required: true
   },
   type: {
     type: String,
-    require: true
+    required: true
   },
   value: {
     type: Number,
-    require: true
+    required: true,
+    validate(value) {
+      if (value < 0) {
+        throw new Error('Cannot insert negative values for grades')
+      }
+    }
   },
   lastModified: {
     type: Date,
@@ -26,4 +31,6 @@ const studentSchema = mongoose.Schema({
 
 mongoose.model('student', studentSchema, 'student');
 
-const student = mongoose.model('student');
+const studentModel = mongoose.model('student');
+
+export default studentModel;
