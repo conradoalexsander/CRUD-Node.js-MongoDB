@@ -28,7 +28,7 @@ app.use(express.json());
       useNewUrlParser: true,
       useUnifiedTopology: true
     }).then(() =>
-      console.log("Conectado ao MongoDB Atlas")
+      console.log("Conectado ao MongoDB Atlas, deploy no heroku")
     ).catch(err => console.log(err))
 
   } catch (error) {
