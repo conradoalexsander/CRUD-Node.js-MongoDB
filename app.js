@@ -1,12 +1,21 @@
 import express from 'express';
 import mongoose from 'mongoose'
 import studentRouter from './routes/studentRoutes.js'
+require('dotenv').config();
+
+
 
 const app = express();
 app.use(express.json());
 (async () => {
   try {
-    await mongoose.connect('mongodb+srv://fullstacker:admin@fullstackcluster-oclyh.gcp.mongodb.net/grades?retryWrites=true&w=majority', {
+    await mongoose.connect(`
+    mongodb+srv://
+    ${process.env.USER}:${process.env.PASSWORD}@
+    ${process.env.CLUSTER}-oclyh.gcp.mongodb.net/
+    ${process.env.DB}?
+    retryWrites=true&w=majority
+    `, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     }).then(() =>
